@@ -14,5 +14,12 @@ def home():
     return render_template("index.html", blogs=response_json)
 
 
+@app.route('/<int:post_id>')
+def show_post(post_id):
+    response = requests.get(url=json_endpoint_url)
+    response_json = response.json()
+    return render_template("post.html", blog=response_json[post_id])
+
+
 if __name__ == "__main__":
     app.run(debug=True)
